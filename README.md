@@ -17,7 +17,7 @@ Newsletter Popup: Sign up for updates with a popup form.
 Current Date and Time: Displays the current date and time on request.
 Installation and Setup
 Clone the repository:
-git clone https://github.com/username/animal-aid-fund.git
+git clone https://github.com/kitarani/Animal-Aid-Fund.git
 Navigate to the project directory:
 cd animal-aid-fund
 Open index.html in a web browser to view the site.
