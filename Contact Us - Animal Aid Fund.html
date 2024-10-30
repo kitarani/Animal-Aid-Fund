@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/erkez/Desktop/web/contact.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Animal Aid Fund</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header class="header-section">
+        <h1>Contact Us</h1>
+        <nav id="navbar">
+            <a class="nav-link" href="file:///C:/Users/erkez/Desktop/web/index.html">Home</a> | 
+            <a class="nav-link" href="file:///C:/Users/erkez/Desktop/web/about.html">About Us</a> | 
+            <a class="nav-link" href="file:///C:/Users/erkez/Desktop/web/adopt.html">Adoption</a> | 
+            <a class="nav-link" href="file:///C:/Users/erkez/Desktop/web/login.html">Login</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section>
+            <h2 class="section-heading">Get in Touch</h2>
+            <p>If you have any questions or would like to volunteer, please fill out the form below, and we’ll get back to you.</p>
+        </section>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="formResponse"></div>
+
+                <h2>Rate Our Services</h2>
+                <div id="star-container">
+                    <span class="star" data-value="1">&#9733</span>
+                    <span class="star" data-value="2">&#9733</span>
+                    <span class="star" data-value="3">&#9733</span>
+                    <span class="star" data-value="4">&#9733</span>
+                    <span class="star" data-value="5">&#9733</span>
+                </div>
+                <div id="ratingMessage" class="rating-message"></div>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+
+            <input class="submit-btn" type="submit" value="Submit">
+        </form>
+    </main>
+    <footer class="footer-bg">
+        <p style="color: #333;">©2024 Animal Aid Fund</p>
+        <p>Written by Erkezhan Erdana</p>
+        <p>Contact us: <a href="file:///C:/Users/erkez/Desktop/web/221922@astanait.edu.kz" style="color:#333;">221922@astanait.edu.kz</a></p>
+    </footer>
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+
+document.addEventListener('keydown', (event) => {
+    let focusedIndex = Array.from(menuItems).indexOf(document.activeElement);
+
+    if (event.key === 'ArrowDown') {
+        focusedIndex = (focusedIndex + 1) % menuItems.length;
+    } else if (event.key === 'ArrowUp') {
+        focusedIndex = (focusedIndex - 1 + menuItems.length) % menuItems.length;
+    }
+
+    menuItems[focusedIndex].focus();
+});
+//contact form
+const contactForm = document.getElementById('contactForm');
+    const formResponse = document.getElementById('formResponse');
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries()); 
+
+        
+        fetch('https://example.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            formResponse.textContent = 'Form submitted successfully!';
+        })
+        .catch(error => {
+            formResponse.textContent = 'Error submitting form.';
+        });
+    });
+    </script>
+</body></html>

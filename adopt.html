@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt an Animal - Animal Aid Fund</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <h1>Adopt an Animal</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#adopt">Available for Adoption</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="adopt">
+            <h2 class="section-heading">Animals Waiting For Adoption</h2>
+            <p>These affectionate animals are waiting for their permanent homes. Think about adopting one today!</p>
+            <div id="animalContainer" class="animal-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Animal Aid Fund</p>
+        <p>Written by Erkezhan Erdana</p>
+        <p>Contact us: <a href="mailto:221922@astanait.edu.kz" style="color: white;">221922@astanait.edu.kz</a></p>
+    </footer>
+
+    <audio id="notificationSound" src="notification-sound.mp3"></audio>
+    <button id="playSoundButton" class="btn" style="display: none;">Play Notification Sound</button>
+
+    <script>
+        const animals = [
+            {
+                name: "Jeremy",
+                breed: "Labrador Retriever",
+                age: 2,
+                personality: "Friendly and playful",
+                image: "puppy1.jpeg",
+                adopt: function() { alert(`${this.name} has been adopted!`); }
+            },
+            {
+                name: "Mia",
+                breed: "Siamese",
+                age: 1,
+                personality: "Gentle and affectionate",
+                image: "kitten1.jpeg",
+                adopt: function() { alert(`${this.name} has been adopted!`); }
+            }
+        ];
+
+        function displayAnimals() {
+            const container = document.getElementById('animalContainer');
+            container.innerHTML = ''; 
+            animals.forEach(animal => {
+                const card = document.createElement('div');
+                card.className = 'animal-card';
+                card.innerHTML = `
+                    <img src="${animal.image}" alt="${animal.name}" class="img-adopt">
+                    <h3>${animal.name}</h3>
+                    <p>Breed: ${animal.breed}</p>
+                    <p>Age: ${animal.age} years</p>
+                    <p>Personality: ${animal.personality}</p>
+                    <button class="btn" onclick="handleAdopt('${animal.name}')">Adopt ${animal.name}</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function handleAdopt(name) {
+            const sound = document.getElementById('notificationSound');
+            sound.play();
+            animals.find(animal => animal.name === name).adopt(); // Call adopt method
+        }
+
+        displayAnimals();
+    </script>
+</body>
+</html>

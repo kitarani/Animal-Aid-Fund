@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Aid Fund</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body class="day-mode">
+
+<header class="header-section">
+    <h1>Welcome to Animal Aid Fund</h1>
+    <p class="highlighted-text">Help the animals, who will help if not us?</p>
+    <nav id="menu">
+        <a href="#about" class="menu-items" tabindex="0">About Us</a>
+        <a href="#help" class="menu-items" tabindex="1">How You Can Help</a>
+        <a href="adopt.html" class="menu-items" tabindex="2">Adopt An Animal</a>
+        <a href="login.html" class="menu-items" tabindex="3">Login</a>
+        <a href="contact.html" class="menu-items" tabindex="4">Contact</a>
+    </nav>
+    <button id="themeToggleBtn" class="theme-toggle-btn">Switch to Night Mode</button>
+    <button id="loginBtn">Login</button>
+    <button id="logoutBtn" style="display: none;">Logout</button>
+</header>
+
+<main class="main-content">
+    <section id="about">
+        <h2 class="section-heading">About Animal Aid</h2>
+        <p>The Animal Aid Fund is committed to rescuing and caring for homeless and injured animals.</p>
+        <figure>
+            <img class="featured-image" src="aidPhoto.jpeg" alt="Animal rescue team in action">
+            <figcaption>Our team rescuing animals in need.</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h1>Click to Get a Random Fact</h1>
+
+        <div id="contentArea">
+            <p>Click the button to display a random fact.</p>
+        </div>
+    
+        <button id="factButton">Get New Fact</button>
+    </section>
+
+    <section id="help">
+        <h2 class="section-heading">How You Can Help</h2>
+        <p>Your donation and support can save lives.</p>
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                What is the Animal Aid Fund?
+            </div>
+            <div class="accordion-body">
+                The Animal Aid Fund is dedicated to rescuing and rehabilitating animals in need.
+            </div>
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                How can I help?
+            </div>
+            <div class="accordion-body">
+                You can volunteer, donate, or adopt an animal.
+            </div>
+        </div>
+    </section>
+
+    <h2>Rate Our Services</h2>
+    <div id="star-container">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <div id="ratingMessage" class="rating-message"></div>
+
+    <section id="popupSection">
+        <button id="openPopup" class="btn">Open Popup</button>
+    </section>
+
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form>
+                <input type="email" placeholder="Email" required class="form-input">
+                <button type="submit" class="submit-btn">Subscribe</button>
+            </form>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <h2>Current Date and Time</h2>
+    <div id="timeDisplay">Current time will appear here</div>
+    <button id="timeButton">Show Current Time</button>
+
+</main>
+
+<footer class="footer-bg">
+    <p style="color: white;">&copy; 2024 Animal Aid Fund</p>
+    <p style="color: white;">Written by Erkezhan Erdana</p>
+    <p style="color: white;">Contact us: <a href="mailto:221922@astanait.edu.kz">221922@astanait.edu.kz</a></p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
