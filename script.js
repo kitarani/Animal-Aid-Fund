@@ -176,3 +176,58 @@ document.getElementById('signupForm').addEventListener('submit', function (e){
 function myFunction(){
     document.body.style.background = "#ffbefe";
 }
+//contact form
+const contactForm = document.getElementById('contactForm');
+    const formResponse = document.getElementById('formResponse');
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries()); 
+
+        
+        fetch('https://example.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            formResponse.textContent = 'Form submitted successfully!';
+        })
+        .catch(error => {
+            formResponse.textContent = 'Error submitting form.';
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("app").style.display = "block";
+            loadPreferences();
+          } else {
+            document.getElementById("login-section").style.display = "block";
+          }
+        });
+
+        function login() {
+            const username = document.getElementById("username").value;
+            if (username) {
+              localStorage.setItem("isLoggedIn", "true");
+              localStorage.setItem("username", username);
+              document.getElementById("login-section").style.display = "none";
+              document.getElementById("app").style.display = "block";
+              loadPreferences();
+            } else {
+              alert("Please enter a username");
+            }
+          }
+
+          function logout() {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("username");
+            window.location.reload();
+          }
+
+          
