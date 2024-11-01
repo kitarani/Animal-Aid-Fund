@@ -6,14 +6,15 @@
     <title>Adopt an Animal - Animal Aid Fund</title>
     <link rel="stylesheet" href="style1.css">
 </head>
-<body>
-    <header>
+<body class="day-mode">
+    <header class="header-section">
         <h1>Adopt an Animal</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#adopt">Available for Adoption</a>
-            <a href="contact.html">Contact</a>
+        <nav id="menu">
+            <a href="index.html" class="menu-items" tabindex="0">Home</a>
+            <a href="#adopt" class="menu-items" tabindex="1">Available for Adoption</a>
+            <a href="contact.html" class="menu-items" tabindex="3">Contact</a>
         </nav>
+        <button id="themeToggleBtn" class="theme-toggle-btn">Switch to Night Mode</button>
     </header>
 
     <main class="main-content">
@@ -24,13 +25,13 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Animal Aid Fund</p>
-        <p>Written by Erkezhan Erdana</p>
-        <p>Contact us: <a href="mailto:221922@astanait.edu.kz" style="color: white;">221922@astanait.edu.kz</a></p>
+    <footer class="footer-bg">
+        <p style="color: white;">&copy; 2024 Animal Aid Fund</p>
+        <p style="color: white;">Written by Erkezhan Erdana</p>
+        <p style="color: white;">Contact us: <a href="mailto:221922@astanait.edu.kz" style="color: white;">221922@astanait.edu.kz</a></p>
     </footer>
 
-    <audio id="notificationSound" src="notification-sound.mp3"></audio>
+    <audio id="notificationSound" src="simple-notification-152054.mp3"></audio>
     <button id="playSoundButton" class="btn" style="display: none;">Play Notification Sound</button>
 
     <script>
@@ -74,10 +75,11 @@
         function handleAdopt(name) {
             const sound = document.getElementById('notificationSound');
             sound.play();
-            animals.find(animal => animal.name === name).adopt(); // Call adopt method
+            animals.find(animal => animal.name === name).adopt(); 
         }
 
         displayAnimals();
     </script>
+<script src="script.js"></script>
 </body>
 </html>
