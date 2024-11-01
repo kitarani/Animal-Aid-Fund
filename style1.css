@@ -1,8 +1,10 @@
 
 body {
     font-family: Arial, sans-serif;
+    color: var(--text-color);
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color);
     transition: background-color 0.5s, color 0.5s;
 }
 h1 {
@@ -23,6 +25,16 @@ a:hover {
     color: #d8bfd8;
 }
 
+:root {
+    --bg-color: white;
+    --text-color: black;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #333;
+    --text-color: white;
+  }
+  
 .day-mode {
     background-color: #ecf0f1;
     color: #000000;
@@ -100,6 +112,17 @@ a:hover {
 #factButton:hover {
     background-color: #6e6e6e;
 }
+
+#login-section, #app {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  button {
+    padding: 10px;
+    margin: 10px 0;
+  }
 
 .star {
     font-size: 40px;
