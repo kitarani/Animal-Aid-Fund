@@ -35,10 +35,15 @@ Check Date and Time by clicking the "Show Current Time" button.
 
 
 Author: Erkezhan Erdana
+
 Group: SE-2330
+
 Subject: Web Technologies 1
+
 University: Astana IT University
+
 Instructor: Kamila Zhakupova
+
 Contact: 221922@astanait.edu.kz
 
 License
