@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Aid Fund - Adopt</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <button id="theme-switch">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
+        </button>
+        <a href="#home" class="logo">AA <span>F</span></a>
+
+        <i class="fa fa-bars" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="sign.html">Login</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="form-box">
+            <h2>Adopt an Animal</h2>
+            <p>Click on to Adopt Animal!</p>
+        </div>
+        <div class="animal-container">
+            <!-- Animal Card 1 -->
+            <div class="animal-card" onclick="playSound('sound')">
+                <img src="img/training-golden-retrievers.jpg" alt="Dog">
+                <h3>Buddy</h3>
+                <p>Playful and affectionate Labrador Retriever looking for a loving home.</p>
+                <button class="adopt-btn">Adopt Me</button>
+            </div>
+            <!-- Animal Card 2 -->
+            <div class="animal-card" onclick="playSound('sound')">
+                <img src="img/cat.jpg" alt="Cat">
+                <h3>Whiskers</h3>
+                <p>Curious and calm tabby cat ready to bring joy to your family.</p>
+                <button class="adopt-btn">Adopt Me</button>
+            </div>
+            <!-- Animal Card 3 -->
+            <div class="animal-card" onclick="playSound('sound')">
+                <img src="img/hamster.jpg" alt="Hamster">
+                <h3>Chirpy</h3>
+                <p>Adorable and tiny hamster who loves cuddles and snacks!</p>
+                <button class="adopt-btn">Adopt Me</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="sound" src="sound/simple-notification-152054.mp3"></audio>
+
+    <div class="rating">
+        <h2>Rate Our Service</h2>
+        <div class="rating-stars">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+        <p>Your rating: <span id="rating-result">0</span>/5</p>
+    </div>
+      
+
+<footer class="footer">
+    <ul class="list">
+        <li>
+            <a href="#">FAQ</a>
+        </li>
+        <li>
+            <a href="#help">How You Can Help</a>
+        </li>
+        <li>
+            <a href="#about">About Us</a>
+        </li>
+        <li>
+            <a href="#contact">Contact Us</a>
+        </li>
+    </ul>
+    <p>&copy; 2024 Animal Aid Fund</p>
+    <p>Written by Erkezhan Erdana</p>
+    <p>Contact us: <a href="mailto:221922@astanait.edu.kz">221922@astanait.edu.kz</a></p>
+</footer>
+</body>
+</html>
