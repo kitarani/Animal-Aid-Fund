@@ -1,233 +1,135 @@
- // Authentication
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const isAuthenticated = localStorage.getItem("isAuthenticated");
+//dark/light mode
+let darkmode = localStorage.getItem('darkmode')
+const themeSwitch = document.getElementById('theme-switch')
 
-if (isAuthenticated) showLogout();
-else showLogin();
-
-loginBtn.addEventListener("click", () => {
-    localStorage.setItem("isAuthenticated", true);
-    showLogout();
-});
-
-logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("isAuthenticated");
-    showLogin();
-});
-
-function showLogin() {
-    loginBtn.style.display = "inline";
-    logoutBtn.style.display = "none";
+const enableDarkmode = () => {
+    document.body.classList.add('darkmode')
+    localStorage.setItem('darkmode', 'active')
 }
 
-function showLogout() {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline";
+const disableDarkmode = () => {
+    document.body.classList.remove('darkmode')
+    localStorage.setItem('darkmode', null)
 }
 
-// Theme Toggle
-const body = document.body;
-const themeToggleBtn = document.getElementById('themeToggleBtn');
-const theme = localStorage.getItem("theme") || "day-mode";
-body.classList.add(theme);
+if(darkmode === "active") enableDarkmode()
 
-themeToggleBtn.addEventListener('click', () => {
-    body.classList.toggle('day-mode');
-    body.classList.toggle('night-mode');
-    localStorage.setItem("theme", body.classList.contains('night-mode') ? 'night-mode' : 'day-mode');
-    themeToggleBtn.textContent = body.classList.contains('night-mode') ? 'Switch to Day Mode' : 'Switch to Night Mode';
-});
+themeSwitch.addEventListener("click", () =>{
+    darkmode = localStorage.getItem('darkmode')
+    darkmode !== "active" ? enableDarkmode() : disableDarkmode()
+})
+//weather api
+const weatherAPIKey = 'YOUR_API_KEY';
+const city = 'London';
 
- //keyboard
- const menuItems = document.querySelectorAll('.menu-item');
-
- document.addEventListener('keydown', (event) => {
-     let focusedIndex = Array.from(menuItems).indexOf(document.activeElement);
-
-     if (event.key === 'ArrowDown') {
-         focusedIndex = (focusedIndex + 1) % menuItems.length;
-     } else if (event.key === 'ArrowUp') {
-         focusedIndex = (focusedIndex - 1 + menuItems.length) % menuItems.length;
-     }
-
-     menuItems[focusedIndex].focus();
- });
-
-//stars
-const stars = document.querySelectorAll('.star');
-const ratingMessage = document.getElementById('ratingMessage');
-
-stars.forEach((star, index) => {
- star.addEventListener('click', () => {
-     stars.forEach(s => s.classList.remove('selected'));
-     for (let i = 0; i <= index; i++) {
-         stars[i].classList.add('selected');
-     }
-     ratingMessage.textContent = `You rated us ${index + 1} out of 5 stars!`;
- });
-});
-//popup
-const popupForm = document.getElementById('popupForm');
-const openPopup = document.getElementById('openPopup');
-
-openPopup.addEventListener('click', () => {
- popupForm.style.display = 'flex';
-});
-
-function closePopup() {
- popupForm.style.display = 'none';
+function fetchWeather() {
+  fetch(`http://dataservice.accuweather.com/alarms/v1/1day/{locationKey}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const temp = data.main.temp;
+      const description = data.weather[0].description;
+      document.getElementById('weather-info').innerHTML = `Temperature: ${temp}°C, ${description}`;
+    })
+    .catch((error) => console.error('Error fetching weather data:', error));
 }
 
-window.onclick = function(event) {
- if (event.target == popupForm) {
-     popupForm.style.display = 'none';
- }
+fetchWeather();
+
+
+//for phone, etc
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+
+menuIcon.onclick = () => {
+    menuIcon.classList.toggle('fa-fa');
+    navbar.classList.toggle('active');
 }
-//date display
-const timeButton = document.getElementById('timeButton');
- const timeDisplay = document.getElementById('timeDisplay');
- timeButton.addEventListener('click', () => {
-     const currentTime = new Date().toLocaleTimeString();
-     timeDisplay.textContent = `Current time is: ${currentTime}`;
- });
-//accordion
-function toggleAccordion(element) {
- const body = element.nextElementSibling;
- if (body.style.display === 'block') {
-     body.style.display = 'none';
- } else {
-     body.style.display = 'block';
- }
-}
-
-//random facts
-const facts = [
-         "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3000 years old and still perfectly edible.",
-         "Octopuses have three hearts and blue blood.",
-         "Bananas are berries, but strawberries aren’t.",
-         "A group of flamingos is called a 'flamboyance'.",
-         "The Eiffel Tower can be 15 cm taller during the summer due to the expansion of iron in heat."
-     ];
-
-     
-     const contentArea = document.querySelector('#contentArea');
-     const factButton = document.querySelector('#factButton');
-
-     
-     function displayRandomFact() {
-         const randomIndex = Math.floor(Math.random() * facts.length);
-         const randomFact = facts[randomIndex];
-         contentArea.innerHTML = `<p>${randomFact}</p>`;
-     }
-
-     factButton.addEventListener('click', displayRandomFact);
-
-
-//signUp form
-document.getElementById('signupForm').addEventListener('submit', function (e){
-    e.preventDefault();
-
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    let confirmPassword = document.getElementById('confirmPassword').value;
-
-    let nameError = document.getElementById('nameError');
-    let emailError = document.getElementById('nameError');
-    let passwordError = document.getElementById('passwordError');
-    let confirmPasswordError = document.getElementById('confirmPasswordError');
-
-    nameError.textContent = '';
-    emailError.textContent = '';
-    passwordError.textContent = '';
-    confirmPasswordError.textContent = '';
-
-    let isValid = true;
-
-    if (name.trim() === ''){
-        nameError.textContent = 'Name is required.';
-        isValid = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)){
-        emailError.textContent = 'Invalid email format.';
-        isValid = false;
-    }
-
-    if (password.length < 8) {
-        passwordError.textContent = 'Password must be at least 8 characters long.';
-        isValid = false;
-    }
-
-    if (password !== confirmPassword) {
-        confirmPassword.textContent = 'Passwords do not match.';
-        isValid = false;
-    }
-
-    if (isValid) {
-        alert('Sign Up succesful!');
-    }
-}); 
-
-
-//backgroundcolor
-function myFunction(){
-    document.body.style.background = "#ffbefe";
-}
-//contact form
-const contactForm = document.getElementById('contactForm');
-    const formResponse = document.getElementById('formResponse');
-
-    contactForm.addEventListener('submit', (event) => {
-        event.preventDefault(); 
-
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData.entries()); 
-
-        
-        fetch('https://example.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            formResponse.textContent = 'Form submitted successfully!';
-        })
-        .catch(error => {
-            formResponse.textContent = 'Error submitting form.';
-        });
+ //FAQ
+document.querySelectorAll('.accordion-header').forEach((header) => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      item.classList.toggle('active');
     });
+  });
+  
+  //rating
+  document.querySelectorAll('.star').forEach((star) => {
+    star.addEventListener('click', () => {
+      const rating = star.getAttribute('data-value');
+      document.getElementById('rating-result').textContent = rating;
+      document.querySelectorAll('.star').forEach((s) => {
+        s.classList.remove('selected');
+        if (s.getAttribute('data-value') <= rating) {
+          s.classList.add('selected');
+        }
+      });
+    });
+  });
+  
+  //popup
+  const popup = document.getElementById('popup');
+const closePopup = document.getElementById('close-popup');
 
-    document.addEventListener("DOMContentLoaded", ()=>{
-        if (localStorage.getItem("isLoggedIn") === "true") {
-            document.getElementById("login-section").style.display = "none";
-            document.getElementById("app").style.display = "block";
-            loadPreferences();
-          } else {
-            document.getElementById("login-section").style.display = "block";
-          }
-        });
+setTimeout(() => {
+  popup.style.display = 'flex';
+}, 2000);
 
-        function login() {
-            const username = document.getElementById("username").value;
-            if (username) {
-              localStorage.setItem("isLoggedIn", "true");
-              localStorage.setItem("username", username);
-              document.getElementById("login-section").style.display = "none";
-              document.getElementById("app").style.display = "block";
-              loadPreferences();
-            } else {
-              alert("Please enter a username");
+closePopup.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+document.getElementById('subscribe-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Thank you for subscribing!');
+  popup.style.display = 'none';
+});
+//login/register
+var log = document.getElementById("login");
+        var reg = document.getElementById("register");
+        var button = document.getElementById("btn");
+
+        // Toggle between login and register forms
+        function register(){
+            log.style.left = "-400px";
+            reg.style.left = "50px";
+            button.style.left = "110px";
+        }
+
+        function login(){
+            log.style.left = "50px";
+            reg.style.left = "4550px";
+            button.style.left = "0";
+        }
+
+        // Validation for Login Form
+        function validateLogin() {
+            var userId = document.getElementById('loginUserId').value;
+            var password = document.getElementById('loginPassword').value;
+            if (!userId || !password) {
+                alert("Please fill in all fields.");
+                return false;
             }
-          }
+            // Add more specific validations as needed (e.g., regex for email)
+            return true;
+        }
 
-          function logout() {
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("username");
-            window.location.reload();
-          }
+        // Validation for Register Form
+        function validateRegister() {
+            var userId = document.getElementById('registerUserId').value;
+            var email = document.getElementById('registerEmail').value;
+            var password = document.getElementById('registerPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
 
-          
+            if (!userId || !email || !password || !confirmPassword) {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+
